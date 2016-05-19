@@ -1,2 +1,4 @@
 # vcd-service-api
-vCloud administration API
+Swagger based API to expose vCloud Director Administrative functions:
+- vDC inventory
+- Creation and Deletion of vDC
