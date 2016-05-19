@@ -1,0 +1,74 @@
+---
+swagger: "2.0"
+info:
+  description: "Delegate some vCloud admin function such as vDC creation"
+  version: "0.0.1"
+  title: "vCloud Service API"
+host: "api.aticloud.aero"
+basePath: "/v1"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /vdc:
+    get:
+      summary: "List of vDCs"
+      description: "The vDC endpoint returns information about the vDC created within\
+        \ the organisation. \n"
+      parameters:
+      - name: "site"
+        in: "query"
+        description: "Latitude component of location."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "An array of vDCs"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/VDC"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  VDC:
+    type: "object"
+    properties:
+      vdc_id:
+        type: "string"
+        description: "Unique identifier representing a specific VDC."
+      description:
+        type: "string"
+        description: "Description of VDC."
+      display_name:
+        type: "string"
+        description: "Display name of VDC."
+      cpu:
+        type: "integer"
+        format: "double"
+        description: "CPU Capacity of vDC."
+      used_cpu:
+        type: "integer"
+        format: "double"
+        description: "CPU Capacity of vDC."
+      ram:
+        type: "integer"
+        format: "double"
+        description: "RAM Capacity of vDC."
+      used_ram:
+        type: "integer"
+        format: "double"
+        description: "RAM Capacity of vDC."
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
